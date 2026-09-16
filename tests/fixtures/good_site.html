@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sklep Przyklad, z Consent Mode v2</title>
+    <!-- Certyfikowany CMP -->
+    <script
+      id="Cookiebot"
+      src="https://consent.cookiebot.com/uc.js"
+      data-cbid="00000000-0000-0000-0000-000000000000"
+      async
+    ></script>
+    <!-- Consent Mode v2, default denied PRZED wszystkim -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        analytics_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        wait_for_update: 500,
+      });
+    </script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtm.js?id=GTM-XXXXXXX"
+    ></script>
+    <script>
+      // po akceptacji w bannerze
+      function onAccept() {
+        gtag("consent", "update", {
+          ad_storage: "granted",
+          analytics_storage: "granted",
+          ad_user_data: "granted",
+          ad_personalization: "granted",
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Sklep z poprawnym Consent Mode</h1>
+  </body>
+</html>

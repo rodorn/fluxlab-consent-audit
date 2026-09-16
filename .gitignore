@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Wyniki skanow poza wersjonowanym demo
+out/audyt_*.json
+out/audyt_*.pdf
+out/audyt_*.html
+
+# Sekrety, nigdy nie commitowac
+.env
+*.token
+secrets.*

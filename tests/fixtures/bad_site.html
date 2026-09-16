@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sklep Przyklad, bez zgody</title>
+    <!-- Google tag (gtag.js) odpalany od razu, bez Consent Mode -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ABC123XYZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-ABC123XYZ");
+      gtag("config", "AW-11122233");
+    </script>
+    <!-- Meta Pixel Code, odpala sie natychmiast -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        /* fbq init */
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "1234567890");
+      fbq("track", "PageView");
+    </script>
+  </head>
+  <body>
+    <h1>Sklep bez zgody</h1>
+  </body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pl"><head><meta charset="utf-8"><title>Audyt Consent Mode</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: Arial, Helvetica, sans-serif; color: #2c3e50; margin: 0; font-size: 12px; }
+  .page { padding: 26px 34px; }
+  header { display: flex; justify-content: space-between; align-items: flex-start;
+    border-bottom: 3px solid #2c3e50; padding-bottom: 10px; }
+  .brand { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+  .brand span { color: #2980b9; }
+  .sub { color: #7f8c8d; font-size: 11px; margin-top: 2px; }
+  .verdict { text-align: right; }
+  .verdict .v { font-size: 22px; font-weight: 800; color: #c0392b; }
+  .verdict .s { font-size: 11px; color: #7f8c8d; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;
+    border-left: 4px solid #2980b9; padding-left: 8px; margin: 18px 0 8px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
+  .card { background: #f7f9fa; border: 1px solid #e1e6ea; border-radius: 6px; padding: 8px 10px; }
+  .card .k { font-size: 10px; color: #7f8c8d; text-transform: uppercase; }
+  .card .val { font-size: 14px; font-weight: 700; margin-top: 3px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+  th, td { text-align: left; padding: 5px 7px; border-bottom: 1px solid #ecf0f1; font-size: 11px; }
+  th { background: #2c3e50; color: #fff; font-weight: 600; }
+  td.u { font-family: monospace; font-size: 9.5px; color: #555; word-break: break-all; }
+  .problem { border: 1px solid #e1e6ea; border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;
+    background: #fff; }
+  .problem.ok { background: #eafaf1; border-color: #27ae60; }
+  .phead { display: flex; align-items: center; gap: 8px; }
+  .badge { color: #fff; font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 10px; }
+  .ptitle { font-weight: 700; font-size: 12px; }
+  .pdesc { margin: 6px 0; color: #34495e; }
+  .pfix { margin: 4px 0 0; background: #eef6fb; padding: 6px 8px; border-radius: 4px; }
+  .ex { font-size: 10px; color: #7f8c8d; }
+  .ex ul { margin: 2px 0 0; padding-left: 16px; }
+  .ex li { font-family: monospace; word-break: break-all; }
+  footer { margin-top: 20px; border-top: 1px solid #ecf0f1; padding-top: 8px;
+    font-size: 9.5px; color: #95a5a6; display: flex; justify-content: space-between; }
+</style></head>
+<body><div class="page">
+  <header>
+    <div>
+      <div class="brand">Flux<span>Lab</span></div>
+      <div class="sub">Audyt Consent Mode v2 i zgod cookie</div>
+    </div>
+    <div class="verdict">
+      <div class="v">NARUSZENIE</div>
+      <div class="s">Wynik zgodnosci: 0/100</div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <div class="card"><div class="k">Adres</div><div class="val" style="font-size:11px">https://sklep-przyklad.pl</div></div>
+    <div class="card"><div class="k">Tryb skanu</div><div class="val" style="font-size:11px">Playwright (ruch na zywo)</div></div>
+    <div class="card"><div class="k">Data</div><div class="val" style="font-size:11px">2026-09-16 21:15</div></div>
+    <div class="card"><div class="k">Zadan zbadanych</div><div class="val">6</div></div>
+  </div>
+
+  <div class="grid" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="card"><div class="k">CMP</div><div class="val" style="font-size:11px">nie wykryto</div></div>
+    <div class="card"><div class="k">Consent default (denied)</div><div class="val">NIE</div></div>
+    <div class="card"><div class="k">Consent update</div><div class="val">NIE</div></div>
+    <div class="card"><div class="k">GTM / gtag</div><div class="val">NIE / TAK</div></div>
+  </div>
+
+  <h2>Tagi wykryte PRZED zgoda</h2>
+  <table><thead><tr><th>Dostawca</th><th>Stan zgody</th><th>Zadanie</th></tr></thead>
+  <tbody><tr><td>GA4</td><td style='color:#c0392b;font-weight:600'>brak</td><td class='u'>https://www.google-analytics.com/g/collect?v=2&amp;tid=G-ABC123XYZ&amp;en=page_view</td></tr><tr><td>Google Ads</td><td style='color:#c0392b;font-weight:600'>brak</td><td class='u'>https://googleads.g.doubleclick.net/pagead/viewthroughconversion/11122233/?random=1</td></tr><tr><td>Meta Pixel</td><td style='color:#c0392b;font-weight:600'>brak</td><td class='u'>https://connect.facebook.net/en_US/fbevents.js</td></tr><tr><td>Meta Pixel</td><td style='color:#c0392b;font-weight:600'>brak</td><td class='u'>https://www.facebook.com/tr/?id=1234567890&amp;ev=PageView&amp;noscript=1</td></tr></tbody></table>
+
+  <h2>Problemy i naprawa</h2>
+  
+            <div class="problem">
+              <div class="phead">
+                <span class="badge" style="background:#c0392b">KRYTYCZNY</span>
+                <span class="ptitle">Brak Consent Mode v2 (consent default)</span>
+              </div>
+              <p class="pdesc">Nie wykryto wywolania gtag(&#x27;consent&#x27;,&#x27;default&#x27;, ...). Google od marca 2024 wymaga Consent Mode v2 dla Google Ads i remarketingu w EOG. Bez niego tracisz dane konwersji i ryzykujesz wstrzymaniem personalizacji reklam.</p>
+              
+              <p class="pfix"><strong>Naprawa:</strong> Wdroz Consent Mode v2 w GTM: tag &#x27;Consent default&#x27; odpalany PRZED wszystkimi innymi (priorytet, All Pages) z ad_storage, analytics_storage, ad_user_data, ad_personalization ustawionymi na &#x27;denied&#x27;, wait_for_update ~500 ms, plus tag &#x27;Consent update&#x27; podpiety pod akceptacje w bannerze CMP.</p>
+            </div>
+            <div class="problem">
+              <div class="phead">
+                <span class="badge" style="background:#e67e22">WYSOKI</span>
+                <span class="ptitle">Brak wykrytego bannera zgody (CMP)</span>
+              </div>
+              <p class="pdesc">Nie wykryto zadnej platformy zarzadzania zgodami. Dla Google Ads w EOG wymagany jest certyfikowany CMP zintegrowany z Consent Mode.</p>
+              
+              <p class="pfix"><strong>Naprawa:</strong> Wdroz certyfikowany przez Google CMP (np. Cookiebot, CookieYes, Usercentrics, Iubenda, OneTrust) i polacz go z Consent Mode v2.</p>
+            </div>
+            <div class="problem">
+              <div class="phead">
+                <span class="badge" style="background:#c0392b">KRYTYCZNY</span>
+                <span class="ptitle">Tagi GA4, Google Ads wysylaja dane przed zgoda</span>
+              </div>
+              <p class="pdesc">Zaobserwowano zadania GA4/Google Ads wyslane PRZED interakcja z bannerem, bez sygnalu Consent Mode &#x27;denied&#x27; (gcs=G100). To oznacza zapis cookie i przetwarzanie danych bez podstawy prawnej.</p>
+              <div class="ex"><span>Przechwycone zadania:</span><ul><li>https://www.google-analytics.com/g/collect?v=2&amp;tid=G-ABC123XYZ&amp;en=page_view</li><li>https://googleads.g.doubleclick.net/pagead/viewthroughconversion/11122233/?random=1</li></ul></div>
+              <p class="pfix"><strong>Naprawa:</strong> Upewnij sie, ze consent default (denied) laduje sie jako pierwszy i ze wszystkie tagi Google respektuja Consent Mode. Przy poprawnej konfiguracji pingi przed zgoda maja gcs=G100 (bezcookie).</p>
+            </div>
+            <div class="problem">
+              <div class="phead">
+                <span class="badge" style="background:#c0392b">KRYTYCZNY</span>
+                <span class="ptitle">Meta Pixel dziala przed zgoda</span>
+              </div>
+              <p class="pdesc">Meta Pixel nie wspiera Google Consent Mode i zostal wykryty przed interakcja z bannerem. Zapisuje identyfikatory (_fbp/_fbc) i wysyla zdarzenia bez zgody, co jest bezposrednim naruszeniem RODO/ePrivacy.</p>
+              <div class="ex"><span>Przechwycone zadania:</span><ul><li>https://connect.facebook.net/en_US/fbevents.js</li><li>https://www.facebook.com/tr/?id=1234567890&amp;ev=PageView&amp;noscript=1</li></ul></div>
+              <p class="pfix"><strong>Naprawa:</strong> Zablokuj tag Meta Pixel do momentu zgody: w GTM ustaw trigger &#x27;Additional consent&#x27; lub odpalaj Pixel dopiero po zdarzeniu akceptacji marketingu z CMP.</p>
+            </div>
+
+  <footer>
+    <span>FluxLab, fluxlab.pl, automatyzacja i wdrozenia AI dla malych firm</span>
+    <span>Dowod techniczny wygenerowany automatycznie, 2026-09-16 21:15</span>
+  </footer>
+</div></body></html>

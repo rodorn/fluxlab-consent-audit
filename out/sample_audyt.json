@@ -1,0 +1,81 @@
+{
+  "url": "https://sklep-przyklad.pl",
+  "mode": "playwright-live",
+  "cmp": {
+    "name": null,
+    "certified": false
+  },
+  "consent_mode": {
+    "default_present": false,
+    "default_denied": false,
+    "update_present": false
+  },
+  "gtm_present": false,
+  "gtag_present": true,
+  "requests_analyzed": 6,
+  "tags_before_consent": [
+    {
+      "vendor": "GA4",
+      "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-ABC123XYZ&en=page_view",
+      "gcs": null,
+      "consent_state": "brak"
+    },
+    {
+      "vendor": "Google Ads",
+      "url": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/11122233/?random=1",
+      "gcs": null,
+      "consent_state": "brak"
+    },
+    {
+      "vendor": "Meta Pixel",
+      "url": "https://connect.facebook.net/en_US/fbevents.js",
+      "gcs": null,
+      "consent_state": "brak"
+    },
+    {
+      "vendor": "Meta Pixel",
+      "url": "https://www.facebook.com/tr/?id=1234567890&ev=PageView&noscript=1",
+      "gcs": null,
+      "consent_state": "brak"
+    }
+  ],
+  "problems": [
+    {
+      "kod": "BRAK_CONSENT_DEFAULT",
+      "waga": "krytyczny",
+      "tytul": "Brak Consent Mode v2 (consent default)",
+      "opis": "Nie wykryto wywolania gtag('consent','default', ...). Google od marca 2024 wymaga Consent Mode v2 dla Google Ads i remarketingu w EOG. Bez niego tracisz dane konwersji i ryzykujesz wstrzymaniem personalizacji reklam.",
+      "naprawa": "Wdroz Consent Mode v2 w GTM: tag 'Consent default' odpalany PRZED wszystkimi innymi (priorytet, All Pages) z ad_storage, analytics_storage, ad_user_data, ad_personalization ustawionymi na 'denied', wait_for_update ~500 ms, plus tag 'Consent update' podpiety pod akceptacje w bannerze CMP."
+    },
+    {
+      "kod": "BRAK_CMP",
+      "waga": "wysoki",
+      "tytul": "Brak wykrytego bannera zgody (CMP)",
+      "opis": "Nie wykryto zadnej platformy zarzadzania zgodami. Dla Google Ads w EOG wymagany jest certyfikowany CMP zintegrowany z Consent Mode.",
+      "naprawa": "Wdroz certyfikowany przez Google CMP (np. Cookiebot, CookieYes, Usercentrics, Iubenda, OneTrust) i polacz go z Consent Mode v2."
+    },
+    {
+      "kod": "TAGI_GOOGLE_PRZED_ZGODA",
+      "waga": "krytyczny",
+      "tytul": "Tagi GA4, Google Ads wysylaja dane przed zgoda",
+      "opis": "Zaobserwowano zadania GA4/Google Ads wyslane PRZED interakcja z bannerem, bez sygnalu Consent Mode 'denied' (gcs=G100). To oznacza zapis cookie i przetwarzanie danych bez podstawy prawnej.",
+      "naprawa": "Upewnij sie, ze consent default (denied) laduje sie jako pierwszy i ze wszystkie tagi Google respektuja Consent Mode. Przy poprawnej konfiguracji pingi przed zgoda maja gcs=G100 (bezcookie).",
+      "przyklady": [
+        "https://www.google-analytics.com/g/collect?v=2&tid=G-ABC123XYZ&en=page_view",
+        "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/11122233/?random=1"
+      ]
+    },
+    {
+      "kod": "META_PIXEL_PRZED_ZGODA",
+      "waga": "krytyczny",
+      "tytul": "Meta Pixel dziala przed zgoda",
+      "opis": "Meta Pixel nie wspiera Google Consent Mode i zostal wykryty przed interakcja z bannerem. Zapisuje identyfikatory (_fbp/_fbc) i wysyla zdarzenia bez zgody, co jest bezposrednim naruszeniem RODO/ePrivacy.",
+      "naprawa": "Zablokuj tag Meta Pixel do momentu zgody: w GTM ustaw trigger 'Additional consent' lub odpalaj Pixel dopiero po zdarzeniu akceptacji marketingu z CMP.",
+      "przyklady": [
+        "https://connect.facebook.net/en_US/fbevents.js",
+        "https://www.facebook.com/tr/?id=1234567890&ev=PageView&noscript=1"
+      ]
+    }
+  ],
+  "score": 0
+}
