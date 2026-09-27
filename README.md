@@ -98,3 +98,7 @@ zadnych tokenow ani kluczy.
 ## Licencja
 
 MIT.
+
+---
+
+Zbudowane przez FluxLab, https://fluxlab.pl. Automatyzacja procesow i wdrozenia AI dla malych firm.
